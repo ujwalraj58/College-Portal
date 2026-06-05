@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <title>Student Dashboard</title>
+
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <aside class="sidebar">
+
+            <div class="sidebar-header">
+
+                <h3>{{ student.name }}</h3>
+
+                <p>{{ student.roll_no }}</p>
+
+            </div>
+
+            <a href="#">Profile</a>
+            <a href="#">Notices</a>
+            <a href="#">Departments</a>
+            <a href="{% url 'logout' %}">Logout</a>
+
+        </aside>
+
+        <main class="dashboard-main">
+
+            <div class="welcome-banner">
+
+                <h1>Welcome Back 👋</h1>
+
+                <h1>{{ student.name }}</h1>
+
+            </div>
+
+
+            <div class="dashboard-stats">
+
+                <div class="dash-card">
+                    <h3>{{ student.roll_no }}</h3>
+                    <p>Roll Number</p>
+                </div>
+
+                <div class="dash-card">
+                    <h3>{{ student.branch }}</h3>
+                    <p>Branch</p>
+                </div>
+
+                <div class="dash-card">
+                    <h3>{{ student.year }}</h3>
+                    <p>Year</p>
+                </div>
+
+            </div>
+
+
+            <div class="profile-card">
+
+                <div class="profile-left">
+
+                    {% if student.photo %}
+                    <img src="{{ student.photo.url }}" alt="{{ student.name }}">
+                    {% else %}
+                    <img src="{% static 'default-profile.png' %}" alt="{{ student.name }}">
+                    {% endif %}
+
+                </div>
+                <div class="profile-right">
+                    <p><strong>Email:</strong> {{ student.email }}</p>
+                    <p><strong>Phone:</strong> {{ student.phone }}</p>
+                </div>
+            </div>
+
+            <div class="notice-section">
+
+                <h2>Recent Notices</h2>
+
+                {% for notice in notices %}
+
+                <div class="dashboard-notice">
+
+                    <h3>{{ notice.title }}</h3>
+
+                    <p>{{ notice.content }}</p>
+
+                </div>
+
+                {% empty %}
+
+                <p>No notices available.</p>
+
+                {% endfor %}
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    {% load static %}
+
+    <link rel="stylesheet"
+          href="{% static 'style.css' %}">
+
+    <title>Student Login</title>
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="login-card">
+
+        <h1>Student Login</h1>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <input
+                type="text"
+                name="roll_no"
+                placeholder="Roll Number">
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Password">
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- ═══ HOME ═══ -->
+<section id="home" class="tab-section">
+    <div class="hero">
+        <div class="hero-blobs">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+        <h1>JNTUH College<br>of <em>Engineering</em></h1>
+        <p>Excellence in Education, Innovation & Research</p>
+        <button class="hero-btn" onclick="showTab('login')">🚀 Login to Explore</button>
+    </div>
+    <div class="stats">
+        <div class="stat-card"><span class="stat-icon">🎒</span><h2>1500+</h2><p>Students</p></div>
+        <div class="stat-card"><span class="stat-icon">👩‍🏫</span><h2>120+</h2><p>Faculty</p></div>
+        <div class="stat-card"><span class="stat-icon">🏛️</span><h2>5</h2><p>Departments</p></div>
+        <div class="stat-card"><span class="stat-icon">💼</span><h2>95%</h2><p>Placements</p></div>
+    </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about" class="tab-section">
+    <div class="page-title">
+        <div class="title-icon" style="background:linear-gradient(135deg,#e9d5ff,#ddd6fe)">📖</div>
+        About Our College
+    </div>
+    <p class="section-intro">Learn about our history, vision and mission.</p>
+    <div class="about-grid">
+        <div class="about-block wide">
+            <span class="block-icon">🏫</span>
+            <h3>History</h3>
+            <p>Jawaharlal Nehru Technological University, Hyderabad (JNTUH) aims to advance technical education and research to benefit both the state and the country. Established in 1972, JNTUH operates from a sprawling 89-acre campus in Kukatpally, Hyderabad, serving over 250,000 students across Telangana.</p>
+        </div>
+        <div class="about-block">
+            <span class="block-icon">🌟</span>
+            <h3>Vision</h3>
+            <p>To emerge as a world-class hub for technical education and research. By synergizing teaching with modern research, JNTUH strives to meet the technological and socioeconomic needs of the state and the nation.</p>
+        </div>
+        <div class="about-block">
+            <span class="block-icon">🎯</span>
+            <h3>Mission</h3>
+            <ul>
+                <li>Advance Technical Excellence</li>
+                <li>Quality Education</li>
+                <li>Research and Development</li>
+                <li>Values and Ethics</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ DEPARTMENTS ═══ -->
+<section id="departments" class="tab-section">
+    <div class="page-title">
+        <div class="title-icon" style="background:linear-gradient(135deg,#ccfbf1,#d1fae5)">🏛️</div>
+        Departments
+    </div>
+    <p class="section-intro">Choose your stream and explore what each department offers.</p>
+    <div class="cards-grid">
+        {% for dept in departments %}
+            <div class="dept-card">
+                <span class="dept-emoji">🏫</span>
+                <h3>{{ dept.department_name }}</h3>
+                <span class="hod">HOD — {{ dept.hod_name }}</span>
+                <p>{{ dept.description }}</p>
+            </div>
+        {% empty %}
+            <p class="empty">No departments available yet.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- ═══ FACULTY ═══ -->
+<section id="faculty" class="tab-section">
+    <div class="page-title">
+        <div class="title-icon" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8)">👨‍🏫</div>
+        Our Faculty
+    </div>
+    <p class="section-intro">Meet the brilliant minds behind your education.</p>
+    {% if faculty %}
+        <div class="faculty-grid">
+            {% for f in faculty %}
+                <div class="faculty-card">
+                    {% if f.photo %}
+                        <img src="{{ f.photo.url }}" alt="{{ f.name }}">
+                    {% else %}
+                        <div class="faculty-avatar">{{ f.name|slice:":2"|upper }}</div>
+                    {% endif %}
+                    <h3>{{ f.name }}</h3>
+                    <span class="dept-label">{{ f.department.department_name }}</span>
+                    <p>{{ f.qualification }}</p>
+                    <p>{{ f.experience }} yrs experience</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="empty">No faculty records available yet.</p>
+    {% endif %}
+</section>
+
+<!-- ═══ NOTICES ═══ -->
+<section id="notices" class="tab-section">
+    <div class="page-title">
+        <div class="title-icon" style="background:linear-gradient(135deg,#ffedd5,#fed7aa)">📢</div>
+        Latest Notices
+    </div>
+    <p class="section-intro">Stay up to date with college announcements.</p>
+    {% for notice in notices %}
+        <div class="notice-card">
+            <div class="notice-emoji">📋</div>
+            <div class="notice-body">
+                <h3>{{ notice.title }}</h3>
+                <p>{{ notice.content }}</p>
+                <span class="notice-date">📅 {{ notice.date_posted|date:"d M Y" }}</span>
+            </div>
+        </div>
+    {% empty %}
+        <p class="empty">No notices available yet.</p>
+    {% endfor %}
+</section>
+
+<!-- ═══ GALLERY ═══ -->
+<section id="gallery" class="tab-section">
+
+    <h2 class="page-title">
+        Campus Gallery
+    </h2>
+
+    <p class="section-intro">
+        Explore the vibrant campus life and infrastructure of JNTUH.
+    </p>
+
+    <div class="gallery-grid">
+
+        {% for img in gallery %}
+
+        <div class="gallery-card">
+
+            <img src="{{ img.image.url }}" alt="{{ img.caption }}">
+
+            <div class="gallery-caption">
+
+                {{ img.caption }}
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="tab-section">
+    <div class="page-title">
+        <div class="title-icon" style="background:linear-gradient(135deg,#d1fae5,#bbf7d0)">📞</div>
+        Get in Touch
+    </div>
+    <p class="section-intro">We'd love to hear from you — reach out any time!</p>
+    <div class="contact-grid">
+        <div class="contact-item">
+            <div class="contact-icon-wrap">📍</div>
+            <div><h3>Address</h3><p>JNTUH College of Engineering,<br>Kukatpally, Hyderabad, Telangana - 500085</p></div>
+        </div>
+         <div class="contact-item">
+            <div class="contact-icon-wrap">🌐</div>
+            <div><h3>Website</h3><p><a href="https://www.jntuh.ac.in" target="_blank">www.jntuh.ac.in</a></p></div>
+         </div>
+        <div class="contact-item">
+            <div class="contact-icon-wrap">✉️</div>
+            <div><h3>Email</h3><p>info@jntuh.in</p></div>
+        </div>
+        <div class="contact-item">
+            <div class="contact-icon-wrap">📞</div>
+            <div><h3>Phone</h3><p>+91 9999999999</p></div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
