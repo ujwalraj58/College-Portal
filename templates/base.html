@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,41 +10,45 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Righteous&display=swap"
+        rel="stylesheet">
 
+    {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <script src="{% static 'main.js' %}" defer></script>
 </head>
+
 <body>
 
-<header>
-    <div class="top-bar">
-        <div class="logo">
-            <div><img src="{% static 'download.png' %}" alt="JNTUH Logo"></div>
-            JNTUH College of Engineering Hyderabad
+    <header>
+        <div class="top-bar">
+            <div class="logo">
+                <div><img src="{% static 'download.png' %}" alt="JNTUH Logo"></div>
+                JNTUH College of Engineering Hyderabad
+            </div>
+            <a href="/login/" class="login-btn">🔑 Student Login</a>
         </div>
-        <a href="/login/" class="login-btn">🔑 Student Login</a>
-    </div>
-    <nav>
-        <a href="#" data-tab="home"        onclick="showTab('home'); return false;">🏠 Home</a>
-        <a href="#" data-tab="about"       onclick="showTab('about'); return false;">📖 About</a>
-        <a href="#" data-tab="departments" onclick="showTab('departments'); return false;">🏛️ Departments</a>
-        <a href="#" data-tab="faculty"     onclick="showTab('faculty'); return false;">👨‍🏫 Faculty</a>
-        <a href="#" data-tab="notices"     onclick="showTab('notices'); return false;">📢 Notices</a>
-        <a href="#" data-tab="gallery"     onclick="showTab('gallery'); return false;">🖼️ Gallery</a>
-        <a href="#" data-tab="contact"     onclick="showTab('contact'); return false;">📞 Contact</a>
-    </nav>
-</header>
+        <nav>
+            <a href="#" data-tab="home" onclick="showTab('home'); return false;">🏠 Home</a>
+            <a href="#" data-tab="about" onclick="showTab('about'); return false;">📖 About</a>
+            <a href="#" data-tab="departments" onclick="showTab('departments'); return false;">🏛️ Departments</a>
+            <a href="#" data-tab="faculty" onclick="showTab('faculty'); return false;">👨‍🏫 Faculty</a>
+            <a href="#" data-tab="notices" onclick="showTab('notices'); return false;">📢 Notices</a>
+            <a href="#" data-tab="gallery" onclick="showTab('gallery'); return false;">🖼️ Gallery</a>
+            <a href="#" data-tab="contact" onclick="showTab('contact'); return false;">📞 Contact</a>
+        </nav>
+    </header>
 
-<main>
-    {% block content %}
-    {% endblock %}
-</main>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
 
-<footer>
-    &copy 2026 Jawaharlal Nehru Technological University Hyderabad,
-    Kukatpally, Hyderabad, Telangana - 500085. All rights reserved.
-</footer>
+    <footer>
+        &copy 2026 Jawaharlal Nehru Technological University Hyderabad,
+        Kukatpally, Hyderabad, Telangana - 500085. All rights reserved.
+    </footer>
 
 </body>
+
 </html>
